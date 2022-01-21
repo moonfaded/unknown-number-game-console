@@ -6,19 +6,20 @@
 //
 
 let randomNumber = UInt8.random(in: 1...250)
+print("Machine have chosen the number. Try to guess it!")
 
-var guessed: String?
-print("Please, guess the number")
+while true {
+    guard let unwrappedValue = UInt8(readLine() ?? "") else {
+        print("Number isn't correct, please, try another one")
+        continue
+    }
 
-repeat {
-    guessed = readLine()
-    let unwrappedValue = UInt8(guessed!)!
-    
-    if unwrappedValue == randomNumber {
-        print("Correct!")
+    if unwrappedValue > randomNumber {
+        print("Smaller!")
     } else if unwrappedValue < randomNumber {
          print("Bigger!")
     } else {
-        print("Smaller!")
+        print("Correct!")
+        break
     }
-} while UInt8(guessed!)! != randomNumber
+}
